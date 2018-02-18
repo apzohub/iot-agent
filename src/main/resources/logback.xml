@@ -1,0 +1,135 @@
+<configuration scan="true" scanPeriod="10 seconds">
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n%ex{full}</pattern>
+		</encoder>
+	</appender>
+
+	<!-- Log File -->
+	<appender name="LOGFILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>bootapp.log</file>
+		<append>true</append>
+		<!-- Support multiple-JVM writing to the same log file -->
+		<!--<prudent>true</prudent>-->
+		<!-- set immediateFlush to false for much higher logging throughput -->
+		<!--<immediateFlush>true</immediateFlush>-->
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <!-- to see the emthod name (slow) .%M -->
+			<pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n%ex{full}</pattern>
+		</encoder>
+        <!--<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">-->
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>archived/bootapp.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+			<!--<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>5MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>-->
+            <maxFileSize>100MB</maxFileSize>
+            <maxHistory>10</maxHistory>
+            <totalSizeCap>1GB</totalSizeCap>
+		</rollingPolicy>
+	</appender>
+
+    <!--https://logback.qos.ch/manual/appenders.html
+
+    <appender name="EMAIL" class="ch.qos.logback.classic.net.SMTPAppender">
+        <smtpHost>smtp.gmail.com</smtpHost>
+        <smtpPort>465</smtpPort>
+        <SSL>true</SSL>
+        <username>YOUR_USERNAME@gmail.com</username>
+        <password>YOUR_GMAIL_PASSWORD</password>
+
+        <to>EMAIL-DESTINATION</to>
+        <to>ANOTHER_EMAIL_DESTINATION</to> &lt;!&ndash; additional destinations are possible &ndash;&gt;
+        <from>SENDER-EMAIL</from>
+        <subject>TESTING: %logger{20} - %m</subject>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%date %-5level %logger{35} - %message%n</pattern>
+        </layout>
+    </appender>
+
+    &lt;!&ndash;<appender name="EMAIL" class="ch.qos.logback.classic.net.SMTPAppender">
+        <evaluator class="ch.qos.logback.classic.boolex.OnMarkerEvaluator">
+              <marker>NOTIFY_ADMIN</marker>
+              you specify add as many markers as you want
+            <marker>TRANSACTION_FAILURE</marker>
+        </evaluator>
+        <smtpHost>${smtpHost}</smtpHost>
+        <to>${to}</to>
+        <from>${from}</from>
+        <layout class="ch.qos.logback.classic.html.HTMLLayout"/>
+    </appender>&ndash;&gt;
+
+    <appender name="SOCKET" class="ch.qos.logback.classic.net.SSLSocketAppender">
+        <remoteHost>${host}</remoteHost>
+        <port>${port}</port>
+        <reconnectionDelay>10000</reconnectionDelay>
+        <ssl>
+            <trustStore>
+                <location>${truststore}</location>
+                <password>${password}</password>
+            </trustStore>
+        </ssl>
+    </appender>
+
+    <appender name="SERVER" class="ch.qos.logback.classic.net.server.ServerSocketAppender">
+        <port>${port}</port>
+        <includeCallerData>${includeCallerData}</includeCallerData>
+    </appender>
+
+    <appender name="SERVER" class="ch.qos.logback.classic.net.server.SSLServerSocketAppender">
+        <port>${port}</port>
+        <includeCallerData>${includeCallerData}</includeCallerData>
+        <ssl>
+            <keyStore>
+                <location>${keystore}</location>
+                <password>${password}</password>
+            </keyStore>
+        </ssl>
+    </appender>
+
+    <appender name="DB" class="ch.qos.logback.classic.db.DBAppender">
+        <connectionSource class="ch.qos.logback.core.db.DriverManagerConnectionSource">
+            <driverClass>com.mysql.jdbc.Driver</driverClass>
+            <url>jdbc:mysql://host_name:3306/datebase_name</url>
+            <user>username</user>
+            <password>password</password>
+        </connectionSource>
+        <connectionSource class="ch.qos.logback.core.db.DataSourceConnectionSource">
+            <dataSource class="${dataSourceClass}">
+            &lt;!&ndash;<dataSource class="com.mysql.jdbc.jdbc2.optional.MysqlDataSource">&ndash;&gt;
+                &lt;!&ndash; Joran cannot substitute variables
+                that are not attribute values. Therefore, we cannot
+                declare the next parameter like the others.
+                &ndash;&gt;
+                <param name="${url-key:-url}" value="${url_value}"/>
+                <serverName>${serverName}</serverName>
+                <databaseName>${databaseName}</databaseName>
+            </dataSource>
+
+            <user>${user}</user>
+            <password>${password}</password>
+        </connectionSource>
+    </appender>
+
+    <appender name="SYSLOG" class="ch.qos.logback.classic.net.SyslogAppender">
+        <syslogHost>remote_home</syslogHost>
+        <facility>AUTH</facility>
+        <suffixPattern>[%thread] %logger %msg</suffixPattern>
+    </appender>
+
+    <appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="FILE" />
+    </appender>-->
+
+    <!--<include resource="org/springframework/boot/logging/logback/base.xml"/>-->
+    <!--<logger name="org.springframework.web" level="DEBUG"/>-->
+
+    <logger name="com.testiot.agent" level="info" /> <!--additivity="false"-->
+	
+	<root level="info">
+		<appender-ref ref="STDOUT" />
+		<!--<appender-ref ref="LOGFILE" />-->
+	</root>
+</configuration>
