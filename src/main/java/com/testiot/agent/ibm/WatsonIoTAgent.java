@@ -1,17 +1,3 @@
-/**
- *****************************************************************************
- * Copyright (c) 2016 IBM Corporation and other Contributors.
-
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- * Sathiskumar Palaniappan - Initial contribution
- *****************************************************************************
- */
-
 package com.testiot.agent.ibm;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -30,7 +16,7 @@ import java.util.*;
 
 /*
     IBM Watson IoT Agent based on the Watson IoT java sdk samples.
-    Eclipse Public License - v 1.0
+    http://www.eclipse.org/legal/epl-v10.html
  */
 
 public class WatsonIoTAgent extends IoTAgent {
