@@ -8,11 +8,12 @@ hs_err_pid*
 target
 obj
 log
+*.log
 cmd.txt
 .git.*
-.tar
-.tar.gz
-.tgz
-.pem.crt
-.pem.key
+*.tar
+*.tar.gz
+*.tgz
+*.pem.crt
+*.pem.key
 
